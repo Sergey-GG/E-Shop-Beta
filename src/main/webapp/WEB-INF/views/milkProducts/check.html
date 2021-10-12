@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Check</title>
+</head>
+<body>
+<h1>Check</h1>
+<p th:text="${'Id: '+milkProduct.getId()}">VALUE</p>
+<p th:text="${'Name: '+milkProduct.getName() }">VALUE</p>
+<p th:text="${'Weight: ' + milkProduct.getWeight()+ ',  Cost:' + milkProduct.getCost() * milkProduct.getWeight()}">
+    VALUE</p>
+
+<a href="/milkProducts">Go to home page!</a>
+
+</body>
+</html>
