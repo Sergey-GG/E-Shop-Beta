@@ -23,9 +23,9 @@ public class MilkProductsController {
 
 
     @GetMapping()
-    public String prodList(Model model) {
-        model.addAttribute("milkProducts", productDAO.prodList());
-        return "milkProducts/prodList";
+    public String index(Model model) {
+        model.addAttribute("milkProducts", productDAO.index());
+        return "milkProducts/index";
     }
 
     @GetMapping("/{id}")
@@ -91,6 +91,4 @@ public class MilkProductsController {
     public String check(@Valid MilkProduct model, @PathVariable("id") int id) {
         return "milkProducts/check";
     }
-
-
 }

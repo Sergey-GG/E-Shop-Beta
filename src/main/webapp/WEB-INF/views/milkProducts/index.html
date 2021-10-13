@@ -10,10 +10,8 @@
     <a th:href="@{/milkProducts/{id}(id=${milkProduct.getId()})}"
        th:text="${milkProduct.getName() + ', ' + milkProduct.getCost()}">user</a>
 </div>
-
 <br/>
 <hr/>
-
 <a href="/milkProducts/new">Create new product</a>
 
 </body>

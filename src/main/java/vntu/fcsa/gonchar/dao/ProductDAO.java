@@ -1,5 +1,6 @@
 package vntu.fcsa.gonchar.dao;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Component;
 import vntu.fcsa.gonchar.model.MilkProduct;
 
@@ -43,7 +44,7 @@ public class ProductDAO {
         milkProducts.sort(Comparator.comparing(MilkProduct::getId));
     }
 
-    public List<MilkProduct> prodList() {
+    public List<MilkProduct> index() {
         return milkProducts;
     }
 
@@ -57,8 +58,10 @@ public class ProductDAO {
         writeMilks();
     }
 
-    public void update(int id, MilkProduct updatedProduct) {
+    public void update(int id,@Valid MilkProduct updatedProduct) {
         MilkProduct productToBeUpdated = show(id);
+        productToBeUpdated.setName(updatedProduct.getName());
+        productToBeUpdated.setCost(updatedProduct.getCost());
         productToBeUpdated.setWeight(updatedProduct.getWeight());
         writeMilks();
     }
@@ -69,7 +72,7 @@ public class ProductDAO {
         writeMilks();
     }
 
-    public void buy(int id, MilkProduct celledProduct) {
+    public void buy(int id, @Valid MilkProduct celledProduct) {
         MilkProduct productToBeUpdated = show(id);
         productToBeUpdated.setWeight(productToBeUpdated.getWeight() - celledProduct.getWeight());
         celledProduct.setName(productToBeUpdated.getName());
