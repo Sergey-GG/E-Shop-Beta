@@ -11,8 +11,8 @@
   <input type="text" th:field="*{name}" id="name"/>
   <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
   <br/>
-  <label for="price">Enter cost: </label>
-  <input type="text" th:field="*{getPrice}" id="price"/>
+  <label for="price">Enter price: </label>
+  <input type="text" th:field="*{price}" id="price"/>
   <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{getPrice}">Price Error</div>
   <br/>
   <label for="weight">Enter weight: </label>

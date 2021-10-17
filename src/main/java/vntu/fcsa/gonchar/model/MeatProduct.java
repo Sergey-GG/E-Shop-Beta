@@ -2,9 +2,11 @@ package vntu.fcsa.gonchar.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+@EqualsAndHashCode(callSuper = true)
 @Component
 @Data
 @AllArgsConstructor

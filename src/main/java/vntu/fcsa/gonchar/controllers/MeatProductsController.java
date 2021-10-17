@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import vntu.fcsa.gonchar.dao.DAOChanger;
+import vntu.fcsa.gonchar.dao.MeatDBDAO;
 import vntu.fcsa.gonchar.dao.MeatProductDAO;
 import vntu.fcsa.gonchar.model.MeatProduct;
 
@@ -16,8 +17,8 @@ public class MeatProductsController {
     private final DAOChanger meatProductDAO;
 
     @Autowired
-    private MeatProductsController(MeatProductDAO meatProductDAO) {
-        this.meatProductDAO = meatProductDAO;
+    private MeatProductsController(MeatDBDAO meatDBDAO) {
+        this.meatProductDAO = meatDBDAO;
     }
 
     @GetMapping()
