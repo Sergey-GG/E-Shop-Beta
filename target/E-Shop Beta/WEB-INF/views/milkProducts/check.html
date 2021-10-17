@@ -8,10 +8,10 @@
 <h1>Check</h1>
 <p th:text="${'Id: '+milkProduct.getId()}">VALUE</p>
 <p th:text="${'Name: '+milkProduct.getName() }">VALUE</p>
-<p th:text="${'Weight: ' + milkProduct.getWeight()+ ',  Cost:' + milkProduct.getCost() * milkProduct.getWeight()}">
+<p th:text="${'Weight: ' + milkProduct.getWeight()+ ',  Cost:' + milkProduct.getPrice() * milkProduct.getWeight()}">
     VALUE</p>
 
-<a href="/milkProducts">Go to home page!</a>
+<a href="/home">Go to home page!</a>
 
 </body>
 </html>

@@ -1,36 +1,34 @@
 package vntu.fcsa.gonchar.controllers;
 
-
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import vntu.fcsa.gonchar.dao.ProductDAO;
+import vntu.fcsa.gonchar.dao.DAOChanger;
+import vntu.fcsa.gonchar.dao.MilkProductDAO;
 import vntu.fcsa.gonchar.model.MilkProduct;
-
 
 @Controller
 @RequestMapping("/milkProducts")
 public class MilkProductsController {
-    private final ProductDAO productDAO;
+    private final DAOChanger milkProductDAO;
 
     @Autowired
-    private MilkProductsController(ProductDAO productDAO) {
-        this.productDAO = productDAO;
+    private MilkProductsController(MilkProductDAO milkProductDAO) {
+        this.milkProductDAO = milkProductDAO;
     }
-
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("milkProducts", productDAO.index());
+        model.addAttribute("milkProducts", milkProductDAO.index());
         return "milkProducts/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("milkProduct", productDAO.show(id));
+        model.addAttribute("milkProduct", milkProductDAO.show(id));
         return "milkProducts/show";
     }
 
@@ -45,13 +43,13 @@ public class MilkProductsController {
         if (bindingResult.hasErrors())
             return "milkProducts/new";
 
-        productDAO.save(milkProduct);
+        milkProductDAO.save(milkProduct);
         return "redirect:/milkProducts";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("milkProduct", productDAO.show(id));
+        model.addAttribute("milkProduct", milkProductDAO.show(id));
         return "milkProducts/edit";
     }
 
@@ -61,19 +59,19 @@ public class MilkProductsController {
         if (bindingResult.hasErrors())
             return "milkProducts/edit";
 
-        productDAO.update(id, milkProduct);
+        milkProductDAO.update(id, milkProduct);
         return "redirect:/milkProducts";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
-        productDAO.delete(id);
+        milkProductDAO.delete(id);
         return "redirect:/milkProducts";
     }
 
     @GetMapping("/{id}/buy")
     public String buy(Model model, @PathVariable("id") int id) {
-        model.addAttribute("milkProduct", productDAO.show(id));
+        model.addAttribute("milkProduct", milkProductDAO.show(id));
         return "milkProducts/buy";
     }
 
@@ -83,7 +81,7 @@ public class MilkProductsController {
         if (bindingResult.hasErrors())
             return "milkProducts/buy";
 
-        productDAO.buy(id, cellMilkProduct);
+        milkProductDAO.buy(id, cellMilkProduct);
         return check(cellMilkProduct, id);
     }
 

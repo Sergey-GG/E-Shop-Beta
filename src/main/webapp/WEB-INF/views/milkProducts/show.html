@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<p th:text="${milkProduct.getName() + ', Cost:' + milkProduct.getCost()}">VALUE</p>
+<p th:text="${milkProduct.getName() + ', Price:' + milkProduct.getPrice()}">VALUE</p>
 <p th:text="${'Weight: ' + milkProduct.getWeight()}">VALUE</p>
 <p th:text="${'Id: '+milkProduct.getId()}">VALUE</p>
 
@@ -16,6 +16,6 @@
 <form th:method="DELETE" th:action="@{/milkProducts/{id}(id=${milkProduct.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
-<a href="/milkProducts">Go to home page!</a>
+<a href="/home">Go to home page!</a>
 </body>
 </html>
