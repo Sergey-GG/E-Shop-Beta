@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+</head>
+<body>
+
+<div th:each="meatProduct : ${meatProducts}">
+    <a th:href="@{/meatProducts/{id}(id=${meatProduct.getId()})}"
+       th:text="${meatProduct.getName() + ', ' + meatProduct.getPrice()}">user</a>
+</div>
+<br/>
+<hr/>
+<a href="/meatProducts/new">Create new product</a>
+
+</body>
+</html>

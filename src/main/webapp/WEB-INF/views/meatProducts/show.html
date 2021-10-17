@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+
+<p th:text="${meatProduct.getName() + ', Price:' + meatProduct.getPrice()}">VALUE</p>
+<p th:text="${'Weight: ' + meatProduct.getWeight()}">VALUE</p>
+<p th:text="${'Id: '+meatProduct.getId()}">VALUE</p>
+
+<a th:href="@{/milkProducts/{id}/edit(id=${meatProduct.getId()})}">Edit</a>
+<a>      |      </a>
+<a th:href="@{/milkProducts/{id}/buy(id=${meatProduct.getId()})}">Buy</a>
+<form th:method="DELETE" th:action="@{/milkProducts/{id}(id=${meatProduct.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+<a href="/home">Go to home page!</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy product</title>
+</head>
+<body>
+
+<form th:method="PUT" th:action="@{/meatProducts/{id}(id=${meatProduct.getId()})}" th:object="${meatProduct}">
+  <p th:text="${meatProduct.getName() + ', Price:' + meatProduct.getPrice()}">VALUE</p>
+  <p th:text="${'Weight: ' + meatProduct.getWeight()}">VALUE</p>
+  <p th:text="${'Id: '+meatProduct.getId()}">VALUE</p>
+
+  <label for="weight">Enter weight: </label>
+  <input type="text" th:field="*{weight}" id="weight"/>
+  <div style="color:red" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Weight Error</div>
+  <br/>
+  <input type="submit" value="Buy!"/>
+</form>
+<a href="/home">Go to list of product!</a>
+
+</body>
+</html>
