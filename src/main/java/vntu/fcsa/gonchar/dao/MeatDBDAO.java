@@ -14,16 +14,18 @@ import java.util.List;
 @Component
 public class MeatDBDAO extends DAOChanger {
     static private int PRODUCTS_COUNT;
+    Product meatProduct;
+    PreparedStatement preparedStatement;
 
     @Override
     public List<Product> index() {
         List<Product> meatProducts = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM MeatProduct");
-            ResultSet resultSet = statement.executeQuery();
+            preparedStatement = connection.prepareStatement("SELECT * FROM MeatProduct");
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Product meatProduct = new MeatProduct();
+                meatProduct = new MeatProduct();
                 meatProduct.setId(resultSet.getInt("id"));
                 meatProduct.setName(resultSet.getString("name"));
                 meatProduct.setWeight(resultSet.getDouble("weight"));
@@ -42,13 +44,13 @@ public class MeatDBDAO extends DAOChanger {
     @Override
     public void save(MeatProduct meatProduct) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO MeatProduct VALUES(?, ?,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO MeatProduct VALUES(?, ?,?,?)");
             meatProduct.setId(++PRODUCTS_COUNT);
-            statement.setInt(1, meatProduct.getId());
-            statement.setString(2, meatProduct.getName());
-            statement.setDouble(3, meatProduct.getPrice());
-            statement.setDouble(4, meatProduct.getWeight());
-                        statement.executeUpdate();
+            preparedStatement.setInt(1, meatProduct.getId());
+            preparedStatement.setString(2, meatProduct.getName());
+            preparedStatement.setDouble(3, meatProduct.getPrice());
+            preparedStatement.setDouble(4, meatProduct.getWeight());
+            preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -57,13 +59,13 @@ public class MeatDBDAO extends DAOChanger {
 
     @Override
     public Product show(int id) {
-        Product meatProduct = null;
+        meatProduct = null;
         try {
-            PreparedStatement statement =
+            preparedStatement =
                     connection.prepareStatement("SELECT * FROM MeatProduct WHERE id=?");
-            statement.setInt(1, id);
+            preparedStatement.setInt(1, id);
 
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             resultSet.next();
 
@@ -83,7 +85,7 @@ public class MeatDBDAO extends DAOChanger {
     @Override
     public void update(int id, Product product) {
         try {
-            PreparedStatement preparedStatement
+            preparedStatement
                     = connection.prepareStatement("UPDATE MeatProduct SET name=?, weight =?, price=? WHERE id = ?");
 
             preparedStatement.setString(1, product.getName());
@@ -101,7 +103,7 @@ public class MeatDBDAO extends DAOChanger {
     @Override
     public void delete(int id) {
         try {
-            PreparedStatement preparedStatement =
+            preparedStatement =
                     connection.prepareStatement("DELETE FROM MeatProduct WHERE id=?");
 
             preparedStatement.setInt(1, id);
@@ -115,31 +117,15 @@ public class MeatDBDAO extends DAOChanger {
 
     @Override
     public void buy(int id, Product product) {
-        Product meatProduct;
-
-
         try {
-            PreparedStatement statement =
-                    connection.prepareStatement("SELECT * FROM MeatProduct WHERE id=?");
-            statement.setInt(1, id);
-
-            ResultSet resultSet = statement.executeQuery();
-
-            resultSet.next();
-
-            meatProduct = new MeatProduct();
-
-            meatProduct.setId(resultSet.getInt("id"));
-            meatProduct.setName(resultSet.getString("name"));
-            meatProduct.setPrice(resultSet.getDouble("price"));
-            meatProduct.setWeight(resultSet.getDouble("weight"));
-            statement
+            show(id);
+            preparedStatement
                     = connection.prepareStatement("UPDATE MeatProduct SET weight =? WHERE id = ?");
-            statement.setInt(2, id);
+            preparedStatement.setInt(2, id);
             product.setName(meatProduct.getName());
             product.setPrice(meatProduct.getPrice());
-            statement.setDouble(1, meatProduct.getWeight() - product.getWeight());
-            statement.executeUpdate();
+            preparedStatement.setDouble(1, meatProduct.getWeight() - product.getWeight());
+            preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
