@@ -16,7 +16,7 @@ public class MilkProductsController {
     private final DAOChanger milkProductDAO;
 
     @Autowired
-    private MilkProductsController(@Qualifier("milkDBDAO") DAOChanger milkDBDAO) {
+    private MilkProductsController(@Qualifier("DBMilkDAO") DAOChanger milkDBDAO) {
         this.milkProductDAO = milkDBDAO;
     }
 

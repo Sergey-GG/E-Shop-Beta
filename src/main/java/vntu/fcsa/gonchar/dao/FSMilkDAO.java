@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Component
-public class MilkProductDAO extends DAOChanger {
+public class FSMilkDAO extends DAOChanger {
     static final String MILK_PRODUCTS_TXT = "C:/Users/fsnge/IdeaProjects/E-Shop Beta/milkProducts.txt";
     public List<Product> milkProducts;
     private int PRODUCTS_COUNT;

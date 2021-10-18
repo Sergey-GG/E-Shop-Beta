@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @Component
-public class MeatProductDAO extends DAOChanger {
+public class FSMeatDAO extends DAOChanger {
     static final String MEAT_PRODUCTS_TXT = "C:/Users/fsnge/IdeaProjects/E-Shop Beta/meatProducts.txt";
     public List<Product> meatProducts;
     private int PRODUCTS_COUNT;

@@ -10,7 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Component
-public class MilkDBDAO extends DAOChanger {
+public class DBMilkDAO extends DAOChanger {
     static private int PRODUCTS_COUNT;
     Product milkProduct;
     PreparedStatement preparedStatement;

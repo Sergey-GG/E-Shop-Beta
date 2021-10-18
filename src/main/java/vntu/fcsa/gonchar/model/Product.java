@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class Product {
+    //Настроить корректную работу валидации
+
     int id;
     @NotEmpty(message = "Name shouldn`t be empty")
     @Size(min = 2, max = 30, message = "Name shouldn`t be too short or long")

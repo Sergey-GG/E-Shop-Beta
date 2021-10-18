@@ -1,6 +1,5 @@
 package vntu.fcsa.gonchar.dao;
 
-import org.springframework.stereotype.Component;
 import vntu.fcsa.gonchar.model.MeatProduct;
 import vntu.fcsa.gonchar.model.MilkProduct;
 import vntu.fcsa.gonchar.model.Product;
@@ -11,9 +10,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class DAOChanger implements IProductDAO {
-    static final String URL = "jdbc:postgresql://localhost:5432/e_shop_db";
+//    @Value("${dAOChanger.URL}")
+//    static String dbUrl;
+    static final String URL= "jdbc:postgresql://localhost:5432/e_shop_db";
+
+//    @Value("${dAOChanger.USERNAME}")
+//    static String dbUsername;
     static final String USERNAME = "postgres";
-    static final String PASSWORD = "eshop";
+
+//    @Value("${dAOChanger.PASSWORD}")
+//    static String dbPassword;
+    static final String PASSWORD= "eshop";
+
     static Connection connection;
 
     static {

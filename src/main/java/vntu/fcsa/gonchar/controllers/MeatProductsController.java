@@ -16,7 +16,7 @@ public class MeatProductsController {
     private final DAOChanger meatProductDAO;
 
     @Autowired
-    private MeatProductsController(@Qualifier("meatDBDAO") DAOChanger meatDBDAO) {
+    private MeatProductsController(@Qualifier("DBMeatDAO") DAOChanger meatDBDAO) {
         this.meatProductDAO = meatDBDAO;
     }
 

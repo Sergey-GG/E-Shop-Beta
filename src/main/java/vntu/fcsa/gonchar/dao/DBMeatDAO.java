@@ -12,7 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Component
-public class MeatDBDAO extends DAOChanger {
+public class DBMeatDAO extends DAOChanger {
     static private int PRODUCTS_COUNT;
     Product meatProduct;
     PreparedStatement preparedStatement;

@@ -1,7 +1,5 @@
 package vntu.fcsa.gonchar.dao;
 
-
-import org.springframework.stereotype.Component;
 import vntu.fcsa.gonchar.model.MeatProduct;
 import vntu.fcsa.gonchar.model.Product;
 import vntu.fcsa.gonchar.model.MilkProduct;
