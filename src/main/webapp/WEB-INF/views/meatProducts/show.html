@@ -13,7 +13,7 @@
 <a th:href="@{/meatProducts/{id}/edit(id=${meatProduct.getId()})}">Edit</a>
 <a>      |      </a>
 <a th:href="@{/meatProducts/{id}/buy(id=${meatProduct.getId()})}">Buy</a>
-<form th:method="DELETE" th:action="@{/milkProducts/{id}(id=${meatProduct.getId()})}">
+<form th:method="DELETE" th:action="@{/meatProducts/{id}(id=${meatProduct.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 <a href="/home">Go to home page!</a>

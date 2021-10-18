@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 public class MilkDBDAO extends DAOChanger {
-    private int PRODUCTS_COUNT;
+    static private int PRODUCTS_COUNT;
 
     @Override
     public List<Product> index() {
@@ -66,7 +66,7 @@ public class MilkDBDAO extends DAOChanger {
     @Override
     public void save(MilkProduct milkProduct) {
         try {
-            PreparedStatement statement = connection.prepareStatement("?,?,?,?");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO MilkProduct VALUES(?, ?,?,?)");
             statement.setInt(1, ++PRODUCTS_COUNT);
             statement.setString(2, milkProduct.getName());
             statement.setDouble(3, milkProduct.getPrice());

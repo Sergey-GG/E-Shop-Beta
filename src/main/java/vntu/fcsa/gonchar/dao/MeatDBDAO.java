@@ -13,7 +13,7 @@ import java.util.List;
 
 @Component
 public class MeatDBDAO extends DAOChanger {
-    private int PRODUCTS_COUNT;
+    static private int PRODUCTS_COUNT;
 
     @Override
     public List<Product> index() {
@@ -30,23 +30,25 @@ public class MeatDBDAO extends DAOChanger {
                 meatProduct.setPrice(resultSet.getDouble("price"));
 
                 meatProducts.add(meatProduct);
+                ++PRODUCTS_COUNT;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        } meatProducts.sort(Comparator.comparing(Product::getId));
+        }
+        meatProducts.sort(Comparator.comparing(Product::getId));
         return meatProducts;
     }
 
     @Override
     public void save(MeatProduct meatProduct) {
         try {
-            PreparedStatement statement = connection.prepareStatement("?,?,?,?");
-            statement.setInt(1, ++PRODUCTS_COUNT);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO MeatProduct VALUES(?, ?,?,?)");
+            meatProduct.setId(++PRODUCTS_COUNT);
+            statement.setInt(1, meatProduct.getId());
             statement.setString(2, meatProduct.getName());
             statement.setDouble(3, meatProduct.getPrice());
             statement.setDouble(4, meatProduct.getWeight());
-
-            statement.executeUpdate();
+                        statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -136,7 +138,7 @@ public class MeatDBDAO extends DAOChanger {
             statement.setInt(2, id);
             product.setName(meatProduct.getName());
             product.setPrice(meatProduct.getPrice());
-            statement.setDouble(1, meatProduct.getWeight()- product.getWeight());
+            statement.setDouble(1, meatProduct.getWeight() - product.getWeight());
             statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
