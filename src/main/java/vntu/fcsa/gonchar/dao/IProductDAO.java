@@ -8,7 +8,7 @@ import vntu.fcsa.gonchar.model.MilkProduct;
 
 import java.util.List;
 
-@Component
+
 public interface IProductDAO {
     List<Product> index();
 

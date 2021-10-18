@@ -6,6 +6,7 @@ import vntu.fcsa.gonchar.model.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Component
@@ -32,6 +33,7 @@ public class MilkDBDAO extends DAOChanger {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        milkProducts.sort(Comparator.comparing(Product::getId));
         return milkProducts;
     }
 

@@ -10,7 +10,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-@Component
 public class DAOChanger implements IProductDAO {
     static final String URL = "jdbc:postgresql://localhost:5432/e_shop_db";
     static final String USERNAME = "postgres";

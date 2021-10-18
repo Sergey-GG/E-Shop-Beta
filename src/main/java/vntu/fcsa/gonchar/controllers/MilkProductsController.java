@@ -2,13 +2,12 @@ package vntu.fcsa.gonchar.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import vntu.fcsa.gonchar.dao.DAOChanger;
-import vntu.fcsa.gonchar.dao.MilkDBDAO;
-import vntu.fcsa.gonchar.dao.MilkProductDAO;
 import vntu.fcsa.gonchar.model.MilkProduct;
 
 @Controller
@@ -17,7 +16,7 @@ public class MilkProductsController {
     private final DAOChanger milkProductDAO;
 
     @Autowired
-    private MilkProductsController(MilkDBDAO milkDBDAO) {
+    private MilkProductsController(@Qualifier("milkDBDAO") DAOChanger milkDBDAO) {
         this.milkProductDAO = milkDBDAO;
     }
 

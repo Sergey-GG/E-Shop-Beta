@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Component
@@ -32,7 +33,7 @@ public class MeatDBDAO extends DAOChanger {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
+        } meatProducts.sort(Comparator.comparing(Product::getId));
         return meatProducts;
     }
 
